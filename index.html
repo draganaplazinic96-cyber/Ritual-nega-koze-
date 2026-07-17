@@ -25,7 +25,7 @@ html,body {
 }
 
 .spine {
-  display:none; /* hidden on mobile, shown on desktop */
+  display:none;
   position:absolute; left:-20px; top:0;
   width:20px; height:100%;
   background:linear-gradient(90deg,#0e0a04,#2a1e0a 50%,#1a1206);
@@ -53,40 +53,27 @@ html,body {
   pointer-events:none; z-index:100;
 }
 
-/* ═══════════════════════════════════
-   OLD PAPER PAGE
-═══════════════════════════════════ */
 .pg {
   width:100%; height:100%;
   position:relative; overflow:hidden;
   padding:max(env(safe-area-inset-top,0px),14px) 20px max(env(safe-area-inset-bottom,0px),12px);
-
-  /* Base parchment — warm yellowed paper */
   background-color:#0e0c07;
-
-  /* Aged, uneven toning — darker at edges, lighter center, stains */
   background-image:
-    /* deep corner burns — like cover */
     radial-gradient(ellipse at 0%   0%,   rgba(0,0,0,0.82) 0%, transparent 40%),
     radial-gradient(ellipse at 100% 0%,   rgba(0,0,0,0.76) 0%, transparent 38%),
     radial-gradient(ellipse at 0%   100%, rgba(0,0,0,0.76) 0%, transparent 38%),
     radial-gradient(ellipse at 100% 100%, rgba(0,0,0,0.82) 0%, transparent 40%),
-    /* subtle warm center — aged leather glow */
     radial-gradient(ellipse at 50% 45%, rgba(38,24,8,0.5) 0%, transparent 60%),
-    /* leather tonal variation */
     radial-gradient(ellipse at 28% 30%, rgba(28,18,5,0.3) 0%, transparent 30%),
     radial-gradient(ellipse at 72% 70%, rgba(24,15,4,0.25) 0%, transparent 28%);
-
   color:#e8dbb8;
 }
 
-/* Paper grain / fiber texture */
 .pg::before {
   content:''; position:absolute; inset:0; pointer-events:none; z-index:2; opacity:.35;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
 }
 
-/* Feathered dark edge — like old book page margin burn */
 .pg::after {
   content:''; position:absolute; inset:0; pointer-events:none; z-index:3;
   box-shadow:
@@ -94,13 +81,11 @@ html,body {
     inset 0 0 12px rgba(0,0,0,0.4);
 }
 
-/* Extra right-edge shadow (binding) */
 .vign {
   position:absolute; inset:0; pointer-events:none; z-index:4;
   background:linear-gradient(to right, transparent 85%, rgba(0,0,0,0.3));
 }
 
-/* Corner ornaments — dark ink */
 .co {
   position:absolute; font-size:11px; color:#6a4c18; opacity:.4;
   pointer-events:none; z-index:5; font-family:'Cinzel',serif; line-height:1;
@@ -117,7 +102,6 @@ html,body {
   pointer-events:none; z-index:5;
 }
 
-/* ── HEADER ── */
 .hdr {
   text-align:center; margin-bottom:5px; padding-bottom:5px;
   position:relative; z-index:5;
@@ -148,7 +132,6 @@ html,body {
   padding:2px 0;
 }
 
-/* ── BADGE ── */
 .bc { text-align:center; position:relative; z-index:5; }
 .badge {
   display:inline-flex; align-items:center; gap:4px;
@@ -168,7 +151,6 @@ html,body {
   position:relative; z-index:5;
 }
 
-/* ── HERB DIVIDER ── */
 .hdiv {
   display:flex; align-items:center; gap:5px;
   margin:3px 0 4px; opacity:.5;
@@ -179,7 +161,6 @@ html,body {
   background:linear-gradient(to right,transparent,rgba(140,90,25,0.45),transparent);
 }
 
-/* ── RITUAL LIST ── */
 .rlist {
   list-style:none; width:100%;
   position:relative; z-index:5;
@@ -226,9 +207,6 @@ html,body {
   color:#6a8838; text-transform:uppercase; white-space:nowrap;
 }
 
-/* ═══════════════════════════════════
-   COVER — dark leather
-═══════════════════════════════════ */
 #cover { border-radius:0 3px 3px 0; overflow:hidden; }
 .cover-full {
   width:100%; height:100%; position:relative;
@@ -241,7 +219,6 @@ html,body {
     radial-gradient(ellipse at 92% 92%, rgba(0,0,0,0.85) 0%, transparent 40%),
     radial-gradient(ellipse at 50% 50%, #181408 0%, #070602 100%);
 }
-/* leather crack texture */
 .cover-full::before {
   content:''; position:absolute; inset:0; pointer-events:none; opacity:.28;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02 0.04' numOctaves='5' seed='8'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23t)' opacity='0.06'/%3E%3C/svg%3E");
@@ -267,27 +244,22 @@ html,body {
   border-top:1px solid rgba(70,55,14,0.22);border-bottom:1px solid rgba(70,55,14,0.22);
 }
 
-/* ── COLOPHON ── */
 .colophon{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:14px;position:relative;z-index:5;}
 .fin{font-family:'Cinzel Decorative',serif;font-size:14px;color:#c8a050;letter-spacing:6px;text-transform:uppercase;}
 .verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;color:#9a8055;opacity:.8;line-height:1.85;}
 .rule{width:44%;height:1px;background:linear-gradient(to right,transparent,rgba(150,100,30,0.5),transparent);}
 .fincurses{font-family:'Italianno',cursive;font-size:14px;color:#b07838;opacity:.72;line-height:2.2;}
 
-
-/* Scrollable list container */
 .scroll-body {
   overflow-y:auto;
   overflow-x:hidden;
   -webkit-overflow-scrolling:touch;
   flex:1;
   min-height:0;
-  /* hide scrollbar but keep scroll */
   scrollbar-width:none;
 }
 .scroll-body::-webkit-scrollbar { display:none; }
 
-/* Page as flex column so list can scroll */
 .pg {
   display:flex !important;
   flex-direction:column;
@@ -301,7 +273,6 @@ html,body {
 .pg > .hdiv { flex-shrink:0; }
 .pg > .scroll-body { flex:1; min-height:0; }
 
-/* Colophon doesn't need scroll */
 .colophon-wrap { flex:1; display:flex; align-items:center; justify-content:center; }
 
 @keyframes bob{0%,100%{opacity:.28;transform:translateY(0)}50%{opacity:.48;transform:translateY(4px)}}
@@ -314,7 +285,6 @@ html,body {
   <div class="click-prev" id="zp" onclick="go(-1)" style="display:none"></div>
   <div class="click-next" id="zn" onclick="go(1)"></div>
 
-  <!-- ══ KORICA ══ -->
   <div class="spread active" id="cover" onclick="go(1)">
     <div class="cover-full">
       <div class="cf1"></div><div class="cf2"></div>
@@ -326,7 +296,6 @@ html,body {
       <svg class="cc br" viewBox="0 0 28 28"><path d="M2,2 L13,2 M2,2 L2,13" fill="none" stroke="#4a3410" stroke-width="1.3" opacity=".5"/><circle cx="6" cy="6" r="2" fill="none" stroke="#4a3410" stroke-width=".7" opacity=".4"/></svg>
 
       <div class="cin">
-        <!-- botanical side branches -->
         <svg style="position:absolute;left:12px;top:50%;transform:translateY(-52%);width:38px;height:52%;opacity:.3" viewBox="0 0 38 200">
           <path d="M19,198 Q16,155 20,118 Q24,83 18,50 Q12,22 19,6" fill="none" stroke="#4a3c14" stroke-width="1.3"/>
           <path d="M19,158 Q4,150 1,133" fill="none" stroke="#3a4814" stroke-width=".9"/><ellipse cx="0" cy="131" rx="5" ry="3" fill="#2e3e10" opacity=".7" transform="rotate(-22,0,131)"/>
@@ -342,7 +311,6 @@ html,body {
           <path d="M19,63  Q35,54 37,37"  fill="none" stroke="#3a4814" stroke-width=".9"/><ellipse cx="37" cy="35" rx="4.5" ry="2.5" fill="#2e3e10" opacity=".6" transform="rotate(20,37,35)"/>
         </svg>
 
-        <!-- wax seal -->
         <svg viewBox="0 0 100 100" style="width:96px;height:96px;margin-bottom:14px;filter:drop-shadow(0 5px 16px rgba(0,0,0,0.98))">
           <ellipse cx="50" cy="92" rx="28" ry="8" fill="#100600" opacity=".55"/>
           <path d="M22,50 Q19,66 25,80 Q32,92 50,95 Q68,92 75,80 Q81,66 78,50 Q81,34 75,20 Q66,6 50,3 Q34,6 25,20 Q19,34 22,50Z" fill="#1a0a04"/>
@@ -426,8 +394,8 @@ html,body {
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Green Plum Refreshing Cleanser</span><span class="ri-t">2. korak double cleanse — low pH.</span></li>
-      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">VT Reedle Shot 300 (Cica x Hyalon)</span><span class="ri-t">mikroigle — dublja penetracija aktiva koji idu posle. Svako veče.</span></li>
       <li class="ri led"><span class="ri-i">💡</span><span class="ri-n">Silk&#x27;n LED — F5 (Duboka crvena)</span><span class="ri-t">⏰ 10 min PRE nege. Crveno + NIR: kolagen + zatezanje.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">VT Reedle Shot 300 (Cica x Hyalon)</span><span class="ri-t">mikroigle — posle LED maske, pre tonera. Svako veče.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Numbuzin NAD+ PDRN Glow Toner (No.9+)</span><span class="ri-t">NAD+ + PDRN — 1. korak veče. ⏱ 30 sek pa Pyunkang.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Pyunkang Yul Essence Toner</span><span class="ri-t">toner/esencija — odmah. ⏱ 30 sek pa HAPCA.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">HAPCA Filler (Theramid)</span><span class="ri-t">HA + Sodium PCA — večernji filer. ⏱ 30 sek pa Hada Labo.</span></li>
@@ -497,8 +465,8 @@ html,body {
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Green Plum Refreshing Cleanser</span><span class="ri-t">2. korak double cleanse — low pH.</span></li>
-      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">VT Reedle Shot 300 (Cica x Hyalon)</span><span class="ri-t">mikroigle — dublja penetracija aktiva koji idu posle. Svako veče.</span></li>
       <li class="ri led"><span class="ri-i">💡</span><span class="ri-n">Silk&#x27;n LED — F1 (Crveno)</span><span class="ri-t">⏰ 10 min PRE nege. Crveno: kolagen, regeneracija.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">VT Reedle Shot 300 (Cica x Hyalon)</span><span class="ri-t">mikroigle — posle LED maske, pre tonera. Svako veče.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Numbuzin NAD+ PDRN Glow Toner (No.9+)</span><span class="ri-t">NAD+ + PDRN — 1. korak veče. ⏱ 30 sek pa Pyunkang.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Pyunkang Yul Essence Toner</span><span class="ri-t">toner/esencija — odmah. ⏱ 30 sek pa HAPCA.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">HAPCA Filler (Theramid)</span><span class="ri-t">HA + Sodium PCA — večernji filer. ⏱ 30 sek pa Hada Labo.</span></li>
@@ -568,8 +536,8 @@ html,body {
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Green Plum Refreshing Cleanser</span><span class="ri-t">2. korak double cleanse — low pH.</span></li>
-      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">VT Reedle Shot 300 (Cica x Hyalon)</span><span class="ri-t">mikroigle — dublja penetracija aktiva koji idu posle. Svako veče.</span></li>
       <li class="ri led"><span class="ri-i">💡</span><span class="ri-n">Silk&#x27;n LED — F4 (NIR)</span><span class="ri-t">⏰ 10 min PRE nege. NIR + duboki NIR: kolagen + elastin.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">VT Reedle Shot 300 (Cica x Hyalon)</span><span class="ri-t">mikroigle — posle LED maske, pre tonera. Svako veče.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Numbuzin NAD+ PDRN Glow Toner (No.9+)</span><span class="ri-t">NAD+ + PDRN — 1. korak veče. ⏱ 30 sek pa Pyunkang.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Pyunkang Yul Essence Toner</span><span class="ri-t">toner/esencija — odmah. ⏱ 30 sek pa HAPCA.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">HAPCA Filler (Theramid)</span><span class="ri-t">HA + Sodium PCA — večernji filer. ⏱ 30 sek pa Hada Labo.</span></li>
@@ -639,8 +607,8 @@ html,body {
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Green Plum Refreshing Cleanser</span><span class="ri-t">2. korak double cleanse — low pH.</span></li>
-      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">VT Reedle Shot 300 (Cica x Hyalon)</span><span class="ri-t">mikroigle — dublja penetracija aktiva koji idu posle. Svako veče.</span></li>
       <li class="ri led"><span class="ri-i">💡</span><span class="ri-n">Silk&#x27;n LED — F7 (Tamno narandžasta)</span><span class="ri-t">⏰ 10 min PRE nege. Ćilibar + crveno + NIR: zatezanje.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">VT Reedle Shot 300 (Cica x Hyalon)</span><span class="ri-t">mikroigle — posle LED maske, pre tonera. Svako veče.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Numbuzin NAD+ PDRN Glow Toner (No.9+)</span><span class="ri-t">NAD+ + PDRN — 1. korak veče. ⏱ 30 sek pa Pyunkang.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Pyunkang Yul Essence Toner</span><span class="ri-t">toner/esencija — odmah. ⏱ 30 sek pa HAPCA.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">HAPCA Filler (Theramid)</span><span class="ri-t">HA + Sodium PCA — večernji filer. ⏱ 30 sek pa Hada Labo.</span></li>
@@ -710,8 +678,8 @@ html,body {
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Green Plum Refreshing Cleanser</span><span class="ri-t">2. korak double cleanse — low pH.</span></li>
-      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">VT Reedle Shot 300 (Cica x Hyalon)</span><span class="ri-t">mikroigle — dublja penetracija aktiva koji idu posle. Svako veče.</span></li>
       <li class="ri led"><span class="ri-i">💡</span><span class="ri-n">Silk&#x27;n LED — F5 (Duboka crvena)</span><span class="ri-t">⏰ 10 min PRE nege. Crveno + NIR: kolagen + zatezanje.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">VT Reedle Shot 300 (Cica x Hyalon)</span><span class="ri-t">mikroigle — posle LED maske, pre tonera. Svako veče.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Numbuzin NAD+ PDRN Glow Toner (No.9+)</span><span class="ri-t">NAD+ + PDRN — 1. korak veče. ⏱ 30 sek pa Pyunkang.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Pyunkang Yul Essence Toner</span><span class="ri-t">toner/esencija — odmah. ⏱ 30 sek pa HAPCA.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">HAPCA Filler (Theramid)</span><span class="ri-t">HA + Sodium PCA — večernji filer. ⏱ 30 sek pa Hada Labo.</span></li>
@@ -781,8 +749,8 @@ html,body {
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Green Plum Refreshing Cleanser</span><span class="ri-t">2. korak double cleanse — low pH.</span></li>
-      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">VT Reedle Shot 300 (Cica x Hyalon)</span><span class="ri-t">mikroigle — dublja penetracija aktiva koji idu posle. Svako veče.</span></li>
       <li class="ri led"><span class="ri-i">💡</span><span class="ri-n">Silk&#x27;n LED — F3 (Ćilibar)</span><span class="ri-t">⏰ 10 min PRE nege. Ćilibar: hidratacija, smirivanje.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">VT Reedle Shot 300 (Cica x Hyalon)</span><span class="ri-t">mikroigle — posle LED maske, pre tonera. Svako veče.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Numbuzin NAD+ PDRN Glow Toner (No.9+)</span><span class="ri-t">NAD+ + PDRN — 1. korak veče. ⏱ 30 sek pa Pyunkang.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Pyunkang Yul Essence Toner</span><span class="ri-t">toner/esencija — odmah. ⏱ 30 sek pa HAPCA.</span></li>
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">HAPCA Filler (Theramid)</span><span class="ri-t">HA + Sodium PCA — večernji filer. ⏱ 30 sek pa Hada Labo.</span></li>
@@ -928,6 +896,62 @@ html,body {
     </div>
   </div>
 
+  <div class="spread" id="cacak1">
+    <div class="pg">
+      <div class="vign"></div>
+      <span class="co tl">✦</span><span class="co tr">⋆</span><span class="co bl">⋆</span><span class="co br">✦</span>
+      <div class="hdr">
+        <div class="dtitle">🚗 Čačak</div>
+        <div class="dsub">Jutro · 2-3 dana</div>
+        <div class="dglyph">✦ ☉ ✦</div>
+        <div class="inc">Iter breve. Cutis simplex.</div>
+      </div>
+      <div class="wbar">Smanjen broj proizvoda — isti nedeljni ritam aktiva, zadržati raspored.</div>
+      <div class="bc"><span class="badge am">☀️  Jutarnji Ritual</span></div>
+      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="scroll-body">
+      <ul class="rlist">
+      <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">Beauty of Joseon Green Plum Refreshing Cleanser</span><span class="ri-t">low pH, čuva barijeru.</span></li>
+      <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">Pyunkang Yul Essence Toner</span><span class="ri-t">toner/esencija — nanosi odmah.</span></li>
+      <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">Tetramid C.E.F (Theramid)</span><span class="ri-t">Vit C + E + Ferulic — JUTRO.</span></li>
+      <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">Hada Labo Premium Lotion</span><span class="ri-t">HA lotion — ⏱ 30 sek pa krema.</span></li>
+      <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">Beauty of Joseon Relief Sun SPF50+ PA++++</span><span class="ri-t">⚡ <span class="rw">OBAVEZNO</span> poslednji korak — svako jutro.</span></li>
+      <li class="ri"><span class="ri-i">💋</span><span class="ri-n">La Roche-Posay Cicaplast Lèvres + Vaseline Lip Therapy Original</span><span class="ri-t">usne — jutro i veče.</span></li>
+      </ul>
+      </div>
+      <div class="pgn">· XVII ·</div>
+    </div>
+  </div>
+
+  <div class="spread" id="cacak2">
+    <div class="pg">
+      <div class="vign"></div>
+      <span class="co tl">✦</span><span class="co tr">⋆</span><span class="co bl">⋆</span><span class="co br">✦</span>
+      <div class="hdr">
+        <div class="dtitle">🚗 Čačak</div>
+        <div class="dsub">Veče · 2-3 dana</div>
+        <div class="dglyph">✦ ☽ ✦</div>
+        <div class="inc">Ritus servatur, etiam procul.</div>
+      </div>
+      <div class="bc"><span class="badge pm">🌙  Večernji Ritual</span></div>
+      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="scroll-body">
+      <ul class="rlist">
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Green Plum Refreshing Cleanser</span><span class="ri-t">2. korak double cleanse — low pH.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Pyunkang Yul Essence Toner</span><span class="ri-t">toner/esencija — odmah. ⏱ 30 sek pa HAPCA.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">HAPCA Filler (Theramid)</span><span class="ri-t">HA + Sodium PCA — večernji filer. ⏱ 30 sek pa Hada Labo.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Hada Labo Super Hydrator Lotion</span><span class="ri-t">HA slojevi.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Clinical Vitamin A ili Copper Peptide (Theramid)</span><span class="ri-t">po nedeljnom rasporedu — zadržati ritam aktiva.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Ceramide Treatment (Theramid)</span><span class="ri-t">ceramidi + CICA + Ectoin — barijera posle aktiva.</span></li>
+      <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Numbuzin Volumflex Eye Cream</span><span class="ri-t">oko očiju — hidracija + fine linije.</span></li>
+      <li class="ri"><span class="ri-i">💋</span><span class="ri-n">La Roche-Posay Cicaplast Lèvres + Vaseline Lip Therapy Original</span><span class="ri-t">usne.</span></li>
+      </ul>
+      </div>
+      <div class="pgn">· XVIII ·</div>
+    </div>
+  </div>
+
   <div class="spread" id="s3">
     <div class="pg">
       <div class="vign"></div>
@@ -951,7 +975,7 @@ html,body {
       <li class="ri"><span class="ri-i">💋</span><span class="ri-n">Vaseline Lip Therapy ROSY LIPS</span><span class="ri-t">vrh — poslednji korak pre šminkanja.</span></li>
       </ul>
       </div>
-      <div class="pgn">· XVII ·</div>
+      <div class="pgn">· XIX ·</div>
     </div>
   </div>
 
@@ -996,7 +1020,6 @@ const cx=cv.getContext('2d');
 function rsz(){cv.width=book.offsetWidth;cv.height=book.offsetHeight;}
 rsz();
 
-// Page color — matches the parchment
 const PAGE_R=20, PAGE_G=16, PAGE_B=8;
 
 function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t;}
@@ -1005,10 +1028,8 @@ function drawFlip(t,dir){
   const W=cv.width,H=cv.height;
   const ang=t*Math.PI, front=ang<Math.PI/2;
 
-  // Cast shadow on the current page underneath
   const shadowAlpha=Math.sin(ang)*0.55;
   if(dir>0){
-    // flipping right-to-left: shadow falls on left side (behind the turning page)
     const sg=cx.createLinearGradient(W,0,0,0);
     sg.addColorStop(0,'rgba(0,0,0,0)');
     sg.addColorStop(0.6,`rgba(0,0,0,${shadowAlpha*0.4})`);
@@ -1022,49 +1043,36 @@ function drawFlip(t,dir){
     cx.fillStyle=sg; cx.fillRect(0,0,W,H);
   }
 
-  // Draw the curling page strip by strip
   const STRIPS=80;
   const sw=W/STRIPS;
 
   for(let i=0;i<STRIPS;i++){
     const s=(i+.5)/STRIPS;
-    // distance from the hinge (left edge when going forward, right when back)
     const d=dir>0?s:(1-s);
 
-    // x position of this strip as it curls
-    // when t=0 strip covers full page; as t→0.5 it sweeps to hinge; t→1 it's gone
     let sx;
     if(dir>0){
-      // hinge at left (x=0), page sweeps left
-      // at t=0: strip at x=d*W; at t=0.5: all at x=0; at t=1: behind at negative x
       sx = d * W * Math.cos(ang);
     } else {
-      // hinge at right (x=W), page sweeps right
       sx = W - d * W * Math.cos(ang);
     }
 
-    // vertical curl — page bows in the middle
     const curl=Math.sin(ang)*22*Math.sin(d*Math.PI);
     const topY=curl, botY=H-curl;
 
-    // brightness — front face lit, back face dim
     let br;
     if(front){
-      // front face: lit in center, slightly shadowed toward hinge
       br=(0.82+0.16*Math.sin(d*Math.PI))*(0.7+0.3*Math.cos(ang));
     } else {
-      // back face: darker, shows reverse side
       br=0.42+0.1*Math.sin(d*Math.PI);
     }
     br=Math.max(.2,Math.min(1.05,br));
 
-    // Parchment color with age variation per strip
     const jitter=(Math.sin(i*7.3)*0.04);
     const r=Math.round((PAGE_R+jitter*8)*br);
     const g=Math.round((PAGE_G+jitter*5)*br);
     const b=Math.round((PAGE_B+jitter*3)*br);
 
-    // strip vertices with curl
     const x0=sx;
     const x1=dir>0 ? sx-sw*Math.abs(Math.cos(ang)) : sx+sw*Math.abs(Math.cos(ang));
 
@@ -1078,7 +1086,6 @@ function drawFlip(t,dir){
     cx.fillStyle=`rgb(${r},${g},${b})`;
     cx.fill();
 
-    // Edge highlight — bright along the fold, dark on back
     if((dir>0&&i===0)||(dir<0&&i===STRIPS-1)){
       cx.strokeStyle=front
         ?`rgba(255,235,180,${0.6*Math.sin(ang)})`
@@ -1088,7 +1095,6 @@ function drawFlip(t,dir){
     cx.restore();
   }
 
-  // Spine crease shadow
   const ca=Math.sin(ang)*0.85, cw=16*Math.sin(ang);
   if(cw>0){
     const hingeX=dir>0?0:W;
@@ -1136,7 +1142,6 @@ document.addEventListener('keydown',e=>{
 });
 window.addEventListener('resize',rsz);
 
-// ── Swipe gesture ──
 let tx=0,ty=0,sw=false;
 document.addEventListener('touchstart',e=>{
   if(e.target.closest('.click-prev,.click-next'))return;
@@ -1158,7 +1163,6 @@ document.addEventListener('touchmove',e=>{
   if(dx>dy*1.2 && dx>18) e.preventDefault();
 },{passive:false});
 
-// ── Day label in pgnum ──
 const LABELS=[
   'Korica',
   'Ponedeljak · Jutro','Ponedeljak · Veče',
@@ -1168,7 +1172,7 @@ const LABELS=[
   'Petak · Jutro','Petak · Veče',
   'Subota · Jutro','Subota · Veče',
   'Nedelja · Jutro','Nedelja · Veče',
-  'Međurutina','Međudan','Pre Šminkanja',
+  'Međurutina','Međudan','Čačak · Jutro','Čačak · Veče','Pre Šminkanja',
   'Finis'
 ];
 function updateLabel(){
