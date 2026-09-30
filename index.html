@@ -276,6 +276,56 @@ html,body {
 .colophon-wrap { flex:1; display:flex; align-items:center; justify-content:center; }
 
 @keyframes bob{0%,100%{opacity:.28;transform:translateY(0)}50%{opacity:.48;transform:translateY(4px)}}
+
+/* ══ SADRŽAJ ══ */
+.tgrp {
+  display:flex; align-items:center; gap:6px;
+  padding:7px 0 3px; position:relative; z-index:5;
+}
+.tgrp::before,.tgrp::after {
+  content:''; flex:1; height:1px;
+  background:linear-gradient(to right,transparent,rgba(140,90,25,0.45),transparent);
+}
+.tgrp span {
+  font-family:'Cinzel',serif; font-size:7px; letter-spacing:3px;
+  color:#9a7a3a; text-transform:uppercase; white-space:nowrap;
+}
+.trow {
+  display:flex; align-items:baseline; gap:0;
+  width:100%; padding:6px 4px 6px 3px;
+  border-bottom:1px solid rgba(100,72,20,0.22);
+  cursor:pointer; position:relative; z-index:5;
+  -webkit-tap-highlight-color:transparent;
+  transition:background .15s;
+}
+.trow:last-child { border-bottom:none; }
+.trow:active,.trow:hover { background:linear-gradient(90deg,rgba(140,100,30,0.2),transparent); }
+.trow-i { flex-shrink:0; width:20px; font-size:11px; filter:saturate(.7) brightness(.85); }
+.trow-n {
+  flex:0 0 auto; width:44%;
+  font-family:'Cormorant Garamond',serif; font-size:12px; font-weight:700;
+  color:#e8dbb8; line-height:1.2;
+}
+.trow-t {
+  flex:1;
+  font-family:'Cormorant Garamond',serif; font-style:italic; font-size:10px;
+  color:#b09a72; opacity:.92; line-height:1.2;
+}
+.trow-a {
+  flex-shrink:0; font-family:'Cinzel',serif; font-size:8px; color:#7a5828; opacity:.7; padding-left:6px;
+}
+
+/* dugme nazad na sadržaj */
+#tocbtn {
+  position:absolute; z-index:60; display:none;
+  right:10px; bottom:max(env(safe-area-inset-bottom,0px),5px);
+  font-family:'Cinzel',serif; font-size:8px; letter-spacing:2px; text-transform:uppercase;
+  color:#b09050; background:rgba(30,20,6,0.85);
+  border:1px solid rgba(120,85,25,0.55);
+  padding:4px 9px; cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+#tocbtn:active { background:rgba(70,48,14,0.9); }
 </style>
 </head>
 <body>
@@ -284,7 +334,9 @@ html,body {
   <canvas id="flip-canvas"></canvas>
   <div class="click-prev" id="zp" onclick="go(-1)" style="display:none"></div>
   <div class="click-next" id="zn" onclick="go(1)"></div>
+  <div id="tocbtn" onclick="goTo('toc')">☰ Sadržaj</div>
 
+  <!-- ══ KORICA ══ -->
   <div class="spread active" id="cover" onclick="go(1)">
     <div class="cover-full">
       <div class="cf1"></div><div class="cf2"></div>
@@ -345,6 +397,47 @@ html,body {
     </div>
   </div>
 
+  <!-- ══ SADRŽAJ ══ -->
+  <div class="spread" id="toc">
+    <div class="pg">
+      <div class="vign"></div>
+      <span class="co tl">☽</span><span class="co tr">✦</span><span class="co bl">✦</span><span class="co br">☾</span>
+      <div class="hdr">
+        <div class="dtitle">Sadržaj</div>
+        <div class="dsub">Index Rituum</div>
+        <div class="dglyph">☉ ✦ ☽</div>
+        <div class="inc">Elige diem. Ritus te exspectat.</div>
+      </div>
+      <div class="hdiv"></div>
+      <div class="scroll-body">
+        <div class="tgrp"><span>Nedeljni raspored</span></div>
+        <div class="trow" onclick="goTo('am1')"><span class="trow-i">🌿</span><span class="trow-n">Ponedeljak · Jutro</span><span class="trow-t">Peptidi + Copper Peptide</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('pm2')"><span class="trow-i">🌿</span><span class="trow-n">Ponedeljak · Veče</span><span class="trow-t">Nox Peptidorum</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('am3')"><span class="trow-i">✨</span><span class="trow-n">Utorak · Jutro</span><span class="trow-t">Retinol noć</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('pm4')"><span class="trow-i">✨</span><span class="trow-n">Utorak · Veče</span><span class="trow-t">Nox Retinoidi</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('am5')"><span class="trow-i">💧</span><span class="trow-n">Sreda · Jutro</span><span class="trow-t">Peptidi + Copper Peptide</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('pm6')"><span class="trow-i">💧</span><span class="trow-n">Sreda · Veče</span><span class="trow-t">Nox Peptidorum</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('am7')"><span class="trow-i">🌟</span><span class="trow-n">Četvrtak · Jutro</span><span class="trow-t">Retinol noć</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('pm8')"><span class="trow-i">🌟</span><span class="trow-n">Četvrtak · Veče</span><span class="trow-t">Nox Retinoidi</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('am9')"><span class="trow-i">⚡</span><span class="trow-n">Petak · Jutro</span><span class="trow-t">Peptidi + Copper Peptide</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('pm10')"><span class="trow-i">⚡</span><span class="trow-n">Petak · Veče</span><span class="trow-t">Nox Peptidorum</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('am11')"><span class="trow-i">🌸</span><span class="trow-n">Subota · Jutro</span><span class="trow-t">Retinol noć</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('pm12')"><span class="trow-i">🌸</span><span class="trow-n">Subota · Veče</span><span class="trow-t">Nox Retinoidi</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('am13')"><span class="trow-i">🔥</span><span class="trow-n">Nedelja · Jutro</span><span class="trow-t">Eksfolijacija</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('pm14')"><span class="trow-i">🔥</span><span class="trow-n">Nedelja · Veče</span><span class="trow-t">Nox Exfoliationis</span><span class="trow-a">›</span></div>
+        <div class="tgrp"><span>Posebni rituali</span></div>
+        <div class="trow" onclick="goTo('s1')"><span class="trow-i">🕒</span><span class="trow-n">Međurutina</span><span class="trow-t">Kad dođem kući ranije</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('s2')"><span class="trow-i">🌓</span><span class="trow-n">Međudan</span><span class="trow-t">Kad ne spavam celu noć</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('cacak1')"><span class="trow-i">🚗</span><span class="trow-n">Čačak · Jutro</span><span class="trow-t">2-3 dana</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('cacak2')"><span class="trow-i">🚗</span><span class="trow-n">Čačak · Veče</span><span class="trow-t">2-3 dana</span><span class="trow-a">›</span></div>
+        <div class="trow" onclick="goTo('s3')"><span class="trow-i">💄</span><span class="trow-n">Pre šminkanja</span><span class="trow-t">Posebni ritual</span><span class="trow-a">›</span></div>
+        <div class="tgrp"><span>Kraj</span></div>
+        <div class="trow" onclick="goTo('col')"><span class="trow-i">☾</span><span class="trow-n">Finis</span><span class="trow-t">Kolofon</span><span class="trow-a">›</span></div>
+      </div>
+      <div class="pgn">Sadržaj</div>
+    </div>
+  </div>
+
   <div class="spread" id="am1">
     <div class="pg">
       <div class="vign"></div>
@@ -356,7 +449,7 @@ html,body {
         <div class="inc">Peptida mea, penetra. Collagena, resurge.</div>
       </div>
       <div class="bc"><span class="badge am">☀️  Jutarnji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">COSRX Low pH Good Morning Gel Cleanser</span><span class="ri-t">blago umivanje — low pH + BHA za pore</span></li>
@@ -389,7 +482,7 @@ html,body {
         <div class="inc">Cuprum vivificat. Senectus fugiat.</div>
       </div>
       <div class="bc"><span class="badge pm">🌙  Večernji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
@@ -427,7 +520,7 @@ html,body {
         <div class="inc">Lux mea venit. Macula, evanescere.</div>
       </div>
       <div class="bc"><span class="badge am">☀️  Jutarnji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">COSRX Low pH Good Morning Gel Cleanser</span><span class="ri-t">blago umivanje — low pH + BHA za pore</span></li>
@@ -460,7 +553,7 @@ html,body {
         <div class="inc">Retinol, tempus vince. Cutis, iuvenescere.</div>
       </div>
       <div class="bc"><span class="badge pm">🌙  Večernji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
@@ -498,7 +591,7 @@ html,body {
         <div class="inc">Ignis azelaic, poros munda.</div>
       </div>
       <div class="bc"><span class="badge am">☀️  Jutarnji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">COSRX Low pH Good Morning Gel Cleanser</span><span class="ri-t">blago umivanje — low pH + BHA za pore</span></li>
@@ -531,7 +624,7 @@ html,body {
         <div class="inc">Peptida, firmate. Rugae, dissolvantur.</div>
       </div>
       <div class="bc"><span class="badge pm">🌙  Večernji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
@@ -569,7 +662,7 @@ html,body {
         <div class="inc">Acidum mandat. Cutis obedit.</div>
       </div>
       <div class="bc"><span class="badge am">☀️  Jutarnji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">COSRX Low pH Good Morning Gel Cleanser</span><span class="ri-t">blago umivanje — low pH + BHA za pore</span></li>
@@ -602,7 +695,7 @@ html,body {
         <div class="inc">Retinal ardet. Vetustas cedat.</div>
       </div>
       <div class="bc"><span class="badge pm">🌙  Večernji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
@@ -640,7 +733,7 @@ html,body {
         <div class="inc">Aurora venit. Cutis, fulge.</div>
       </div>
       <div class="bc"><span class="badge am">☀️  Jutarnji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">COSRX Low pH Good Morning Gel Cleanser</span><span class="ri-t">blago umivanje — low pH + BHA za pore</span></li>
@@ -673,7 +766,7 @@ html,body {
         <div class="inc">Cuprum et collagena, vincite.</div>
       </div>
       <div class="bc"><span class="badge pm">🌙  Večernji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
@@ -711,7 +804,7 @@ html,body {
         <div class="inc">Solis lux, protege.</div>
       </div>
       <div class="bc"><span class="badge am">☀️  Jutarnji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">COSRX Low pH Good Morning Gel Cleanser</span><span class="ri-t">blago umivanje — low pH + BHA za pore</span></li>
@@ -744,7 +837,7 @@ html,body {
         <div class="inc">Ultima nox. Cutis, renovatur.</div>
       </div>
       <div class="bc"><span class="badge pm">🌙  Večernji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
@@ -782,7 +875,7 @@ html,body {
         <div class="inc">Acidum purgat. Nova cutis nascitur.</div>
       </div>
       <div class="bc"><span class="badge am">☀️  Jutarnji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">COSRX Low pH Good Morning Gel Cleanser</span><span class="ri-t">blago umivanje — low pH + BHA za pore</span></li>
@@ -816,7 +909,7 @@ html,body {
       </div>
       <div class="wbar">⚠️ Veče: rinse-off piling — aktivi kompenzovani ujutro: Vit C + AZID. Svake druge nedelje Red Bean, svake druge Smoothing Treatment AHA+PHA — nikad oba iste večeri.</div>
       <div class="bc"><span class="badge pm">🌙  Večernji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
@@ -854,7 +947,7 @@ html,body {
         <div class="inc">Pausa. Cutis respirat.</div>
       </div>
       <div class="bc"><span class="badge am">Posebni Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🕒</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
@@ -880,7 +973,7 @@ html,body {
         <div class="inc">Pausa. Cutis respirat.</div>
       </div>
       <div class="bc"><span class="badge pm">Posebni Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌓</span><span class="ri-n">Voda — ispiranje lica</span><span class="ri-t">samo mlaka voda, bez čistača.</span></li>
@@ -908,7 +1001,7 @@ html,body {
       </div>
       <div class="wbar">Smanjen broj proizvoda — isti nedeljni ritam aktiva, zadržati raspored.</div>
       <div class="bc"><span class="badge am">☀️  Jutarnji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">☀️</span><span class="ri-n">Beauty of Joseon Green Plum Refreshing Cleanser</span><span class="ri-t">low pH, čuva barijeru.</span></li>
@@ -934,7 +1027,7 @@ html,body {
         <div class="inc">Ritus servatur, etiam procul.</div>
       </div>
       <div class="bc"><span class="badge pm">🌙  Večernji Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">🌙</span><span class="ri-n">Beauty of Joseon Radiance Cleansing Balm</span><span class="ri-t">1. korak — oil cleanser, skida SPF i šminku.</span></li>
@@ -962,7 +1055,7 @@ html,body {
         <div class="inc">Vultus perfectus. Nemo resistit.</div>
       </div>
       <div class="bc"><span class="badge am">Posebni Ritual</span></div>
-      <div class="hdiv"><svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg></div>
+      <div class="hdiv"></div>
       <div class="scroll-body">
       <ul class="rlist">
       <li class="ri"><span class="ri-i">✨</span><span class="ri-n">Beauty of Joseon Green Plum Refreshing Cleanser</span><span class="ri-t">samo ovaj cleanser — koža nije prljava od SPF-a.</span></li>
@@ -1012,10 +1105,15 @@ html,body {
 <script>
 const spreads=document.querySelectorAll('.spread');
 const N=spreads.length;
+const TOC_IDX=[...spreads].findIndex(s=>s.id==='toc');
 let cur=0,flip=false;
 const book=document.getElementById('book');
 const cv=document.getElementById('flip-canvas');
 const cx=cv.getContext('2d');
+
+/* razdelnik ispod zaglavlja — isti SVG na svim stranicama */
+const HDIV='<svg width="80" height="9" viewBox="0 0 80 9"><path d="M0,4.5 Q10,2 20,4.5 Q30,7 40,4.5 Q50,2 60,4.5 Q70,7 80,4.5" fill="none" stroke="#6b4c1a" stroke-width="0.8" opacity=".45"/><circle cx="20" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="40" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><circle cx="60" cy="4.5" r="1.3" fill="#7a5520" opacity=".4"/><path d="M40,4.5 L40,1.5 M37.5,3 L40,1.5 L42.5,3" stroke="#5a6828" stroke-width="0.7" opacity=".4" fill="none"/></svg>';
+document.querySelectorAll('.hdiv').forEach(d=>d.innerHTML=HDIV);
 
 function rsz(){cv.width=book.offsetWidth;cv.height=book.offsetHeight;}
 rsz();
@@ -1123,17 +1221,35 @@ function animFlip(dir,cb){
   requestAnimationFrame(fr);
 }
 
+function updateNav(){
+  /* na sadržaju su bočne zone isključene da ne blokiraju klikove na stavke */
+  const onCover = cur===0, onToc = cur===TOC_IDX;
+  document.getElementById('zp').style.display = (onCover||onToc)?'none':'block';
+  document.getElementById('zn').style.display = (onToc||cur>=N-1)?'none':'block';
+  document.getElementById('tocbtn').style.display = (onCover||onToc)?'none':'block';
+}
+
+function showPage(next){
+  spreads[cur].classList.remove('active');
+  cur=next;
+  spreads[cur].classList.add('active');
+  const sb=spreads[cur].querySelector('.scroll-body');
+  if(sb) sb.scrollTop=0;
+  updateNav();
+}
+
 function go(dir){
   if(flip)return;
   const next=cur+dir;
   if(next<0||next>=N)return;
-  animFlip(dir,()=>{
-    spreads[cur].classList.remove('active');
-    cur=next;
-    spreads[cur].classList.add('active');
-    document.getElementById('zp').style.display=cur<=0?'none':'block';
-    document.getElementById('zn').style.display=cur>=N-1?'none':'block';
-  });
+  animFlip(dir,()=>showPage(next));
+}
+
+function goTo(id){
+  if(flip)return;
+  const next=[...spreads].findIndex(s=>s.id===id);
+  if(next<0||next===cur)return;
+  animFlip(next>cur?1:-1,()=>showPage(next));
 }
 
 document.addEventListener('keydown',e=>{
@@ -1164,7 +1280,7 @@ document.addEventListener('touchmove',e=>{
 },{passive:false});
 
 const LABELS=[
-  'Korica',
+  'Korica','Sadržaj',
   'Ponedeljak · Jutro','Ponedeljak · Veče',
   'Utorak · Jutro','Utorak · Veče',
   'Sreda · Jutro','Sreda · Veče',
@@ -1182,6 +1298,7 @@ function updateLabel(){
   });
 }
 updateLabel();
+updateNav();
 </script>
 </body>
 </html>
